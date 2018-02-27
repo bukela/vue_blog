@@ -1,8 +1,9 @@
 <template>
-  <div id="show-blogs">
+<!-- v-theme vrednost sa duplim i jednotrukim navodnicima -->
+  <div v-theme:column="'narrow'" id="show-blogs">
       <h1  class="blogs-title">Show blogs</h1>
       <div v-for="blog in blogs" :key="blog" class="single-blog">
-          <h2>{{ blog.title }}</h2>
+          <h2 v-rainbow>{{ blog.title }}</h2>
           <article class="blog-body">{{ blog.body }}</article>
       </div>
   </div>
@@ -34,7 +35,7 @@ export default {
 }
 #show-blogs {
     margin: 20px auto;
-    max-width: 500px;
+    /* max-width: 500px; */
 }
 label{
     display: block;
