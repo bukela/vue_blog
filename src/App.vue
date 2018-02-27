@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <add-blog></add-blog>
+    <add-blog v-bind:boo="boo"></add-blog>
   </div>
 </template>
 
@@ -12,7 +12,7 @@ export default {
   },
   data () {
     return {
-      
+      boo: 'ZDRAVOOOOOOO'
     }
   }
 }
