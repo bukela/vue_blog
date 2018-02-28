@@ -24,7 +24,7 @@ export default {
 <style>
 body {
   margin: 0;
-  background-color: lightgray;
+  background-color: rgb(238, 238, 238);
   font-family: Arial, Helvetica, sans-serif;
 }
 </style>

@@ -2,9 +2,16 @@
 <!-- v-theme vrednost sa duplim i jednotrukim navodnicima -->
   <div v-theme:column="'narrow'" id="show-blogs">
       <h1  class="blogs-title">Show blogs</h1>
-      <div v-for="blog in blogs" :key="blog" class="single-blog">
-          <h2 v-rainbow>{{ blog.title }}</h2>
-          <article class="blog-body">{{ blog.body }}</article>
+       <input type="text" placeholder="search" v-model="search">
+       <!-- div bez search filtera: -->
+      <!-- <div v-for="blog in blogs" :key="blog" class="single-blog">
+          <h2 v-rainbow>{{ blog.title | to-uppercase }}</h2>
+          <article class="blog-body">{{ blog.body | snippet }}</article>
+      </div> -->
+
+      <div v-for="blog in filteredBlogs" :key="blog" class="single-blog">
+          <h2 v-rainbow>{{ blog.title | to-uppercase }}</h2>
+          <article class="blog-body">{{ blog.body | snippet }}</article>
       </div>
   </div>
 </template>
@@ -15,7 +22,8 @@ export default {
     
   data () {
     return {
-      blogs: []
+      blogs: [],
+      search: ''
     }
   },
   methods: {
@@ -25,6 +33,13 @@ export default {
       this.$http.get('https://jsonplaceholder.typicode.com/posts').then(function(data) {
           this.blogs = data.body.slice(0,10);
       });
+  },
+  computed: {
+      filteredBlogs: function() {
+          return this.blogs.filter((blog) => {
+              return blog.title.match(this.search);
+          });
+      }
   }
 }
 </script>
